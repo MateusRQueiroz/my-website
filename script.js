@@ -170,6 +170,113 @@ function initReveal() {
   els.forEach((el) => obs.observe(el));
 }
 
+const projectDetails = {
+  searchlens: {
+    title: "SearchLens",
+    overview:
+      "A modular data pipeline for collecting, cleaning, and analyzing job listings from multiple sources.",
+    working:
+      "At the time, I was focused on building the scraping pipeline, structuring source adapters cleanly, and making normalization and deduplication reliable.",
+    next:
+      "Next, I want to improve the analytics layer, add a frontend dashboard, and make it easier to plug in more sources."
+  },
+
+  orbit: {
+    title: "Orbit",
+    overview:
+      "An experimental journaling app that visualizes personal entries as an interactive graph of emotions and experiences.",
+    working:
+      "At the time, I was thinking through the product direction, the data model for entries, and how the visual graph should balance exploration with readability.",
+    next:
+      "Next, I plan to build the first interactive version of the visualization and connect it to a real entry system."
+  },
+
+  vault: {
+    title: "Password Vault",
+    overview:
+      "A CLI password manager that encrypts credentials using a master password and stores them securely.",
+    working:
+      "At the time, I was focused on learning how to build small, effective, CRUD systems while working on encryption, persistent storage, and clean command-line flows.",
+    next:
+      "Next, I’d improve usability, practicity, and potentially evolve it into a more polished desktop tool."
+  },
+
+  habitflow: {
+    title: "HabitFlow",
+    overview:
+      "A command-line task and habit tracker built to help users manage work, track progress, and build streaks.",
+    working:
+      "At the time, I was practicing program structure, state handling, and persistent JSON-based storage in a way that kept the tool simple and usable.",
+    next:
+      "Next, I’d develop a dashboard to facilitate user navigation and habit report."
+  },
+
+  quizmaker: {
+    title: "QuizMaker",
+    overview:
+      "A CLI application that lets users create, edit, and take quizzes with persistent JSON storage.",
+    working:
+      "At the time, I was focused on CRUD-style interactions, file persistence, and making the quiz flow feel good from creation to completion.",
+    next:
+      "Next, I’d like to add scoring improvements, better editing flows, and a cleaner content structure."
+  },
+
+  rqbestprices: {
+    title: "RQBestprices Website",
+    overview:
+      "A business website created for the Amazon reseller company RQBestprices.",
+    working:
+      "At the time, I was focused on turning business needs into a clean website structure, improving presentation, and making the site feel straightforward and credible.",
+    next:
+      "Next, I’d refine the design and improve responsiveness"
+  }
+};
+
+const modal = document.getElementById("projectModal");
+const modalBackdrop = document.getElementById("projectModalBackdrop");
+const modalClose = document.getElementById("projectModalClose");
+
+const modalTitle = document.getElementById("projectModalTitle");
+const modalOverview = document.getElementById("projectModalOverview");
+const modalWorking = document.getElementById("projectModalWorking");
+const modalNext = document.getElementById("projectModalNext");
+
+function openProjectModal(projectKey) {
+  const project = projectDetails[projectKey];
+  if (!project) return;
+
+  modalTitle.textContent = project.title;
+  modalOverview.textContent = project.overview;
+  modalWorking.textContent = project.working;
+  modalNext.textContent = project.next;
+
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeProjectModal() {
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+document.querySelectorAll(".work-details-btn").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const projectKey = button.dataset.project;
+    openProjectModal(projectKey);
+  });
+});
+
+modalBackdrop.addEventListener("click", closeProjectModal);
+modalClose.addEventListener("click", closeProjectModal);
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && modal.classList.contains("open")) {
+    closeProjectModal();
+  }
+});
 
 generateStars();
 updateTime();

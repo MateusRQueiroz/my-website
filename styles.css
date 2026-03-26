@@ -185,8 +185,8 @@
   .hero-content {
     position: relative;
     z-index: 10;
-    padding: 0 3rem 5rem;
-    max-width: 700px;
+    padding: 0 3rem 7rem 5rem;
+    max-width: 650px;
   }
 
   .hero-tag {
@@ -274,15 +274,15 @@
   .time-badge {
     position: absolute;
     top: 50%;
-    right: 3rem;
+    right: 4rem; 
     transform: translateY(-50%);
-    z-index: 10;
     text-align: right;
+    opacity: 0.85;
   }
 
   .time-display {
     font-family: 'Playfair Display', serif;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: var(--text-dim);
     letter-spacing: 0.1em;
   }
@@ -337,6 +337,28 @@
     overflow: hidden;
   }
 
+  .work-details-btn {
+    margin-top: 1.5rem;
+    padding: 0.6rem 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid rgba(240, 165, 0, 0.3);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--accent);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .work-details-btn:hover {
+    background: var(--accent);
+    color: #0a0e1a;
+    border-color: var(--accent);
+  }
+
   .work-card::before {
     content: '';
     position: absolute;
@@ -353,6 +375,11 @@
     color: var(--text-dim);
     letter-spacing: 0.15em;
     margin-bottom: 1.5rem;
+  }
+
+  .work-card:hover .work-details-btn {
+  opacity: 1;
+  transform: translateY(0);
   }
 
   .work-title {
@@ -384,7 +411,92 @@
     border: 1px solid rgba(240,165,0,0.3);
     color: var(--accent);
   }
+    
+  .project-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
 
+  .project-modal.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .project-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(4, 8, 18, 0.7);
+    backdrop-filter: blur(6px);
+  }
+
+  .project-modal-content {
+    position: relative;
+    z-index: 1;
+    width: min(700px, 100%);
+    background: #0b1120;
+    border: 1px solid rgba(240, 165, 0, 0.18);
+    padding: 2rem;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.45);
+  }
+
+  .project-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .project-modal-close:hover {
+    color: var(--accent);
+  }
+
+  .project-modal-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .project-modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+
+  .project-modal-section + .project-modal-section {
+    margin-top: 1.5rem;
+  }
+
+  .project-modal-section-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-modal-section p {
+    font-size: 0.75rem;
+    line-height: 1.8;
+    color: var(--text-dim);
+  }
+  
   /* about */
   .about-layout {
     display: grid;

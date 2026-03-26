@@ -6,6 +6,7 @@
 <title>Mateus Queiroz</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <link rel = "stylesheet" href = "styles.css">
+<link rel="icon" type="image/png" href="/favicon.png">
 </head>
 
 
@@ -162,41 +163,78 @@
 <section id="work">
   <div class="section-label reveal">Selected Work</div>
   <div class="work-grid">
+
     <div class="work-card reveal">
       <div class="work-year">2026</div>
       <div class="work-title">SearchLens</div>
       <p class="work-desc">A modular data pipeline that scrapes, cleans, and analyzes job listings from multiple sources, with support for easily adding new ones.</p>
       <div class="work-tags"><span class="tag">Python</span><span class="tag">Data Pipeline</span><span class="tag">SQLite</span></div>
+      <button
+        class="work-details-btn"
+        data-project="searchlens">
+        View details
+      </button>
     </div>
+
     <div class="work-card reveal">
       <div class="work-year">2026</div>
       <div class="work-title">Orbit <span style="opacity:0.6; font-size:0.8em;">(In Progress)</span></div>
       <p class="work-desc">An experimental journaling app that visualizes personal entries as an interactive graph of emotions and experiences.</p>
       <div class="work-tags"><span class="tag">In Progress</span><span class="tag">React</span><span class="tag">Visualization</span></div>
+      <button
+        class="work-details-btn"
+        data-project="orbit">
+        View details
+      </button>
     </div>
+
+
     <div class="work-card reveal">
       <div class="work-year">2024</div>
       <div class="work-title">Password Vault</div>
       <p class="work-desc">A CLI password manager that encrypts credentials using a master password and stores them securely with persistent JSON storage.</p>
       <div class="work-tags"><span class="tag">Python</span><span class="tag">Encryption</span><span class="tag">CLI</span></div>
+      <button
+        class="work-details-btn"
+        data-project="vault">
+        View details
+      </button>
     </div>
+
     <div class="work-card reveal">
       <div class="work-year">2025</div>
       <div class="work-title">HabitFlow</div>
       <p class="work-desc">A command-line task and habit tracker that helps users manage work, track progress, and build streaks, with persistent JSON storage.</p>
       <div class="work-tags"><span class="tag">Java</span><span class="tag">JSON</span><span class="tag">CLI</span></div>
+      <button
+        class="work-details-btn"
+        data-project="habitflow">
+        View details
+      </button>
     </div>
+
     <div class="work-card reveal">
       <div class="work-year">2025</div>
       <div class="work-title">QuizMaker</div>
       <p class="work-desc">A CLI application that lets users create, edit, and take quizzes, with data saved persistently using JSON.</p>
       <div class="work-tags"><span class="tag">Java</span><span class="tag">JSON</span><span class="tag">CLI</span></div>
+      <button
+        class="work-details-btn"
+        data-project="quizmaker">
+        View details
+      </button>
     </div>
+
     <div class="work-card reveal">
       <div class="work-year">2025</div>
       <div class="work-title">RQBestprices Website</div>
       <p class="work-desc">A business website for the Amazon reseller company RQBestprices.</p>
       <div class="work-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+      <button
+        class="work-details-btn"
+        data-project="rqbestprices">
+        View details
+      </button>
     </div>
   </div>
 </section>
@@ -314,6 +352,32 @@
   <span>Mateus Queiroz © 2025</span>
   <span id="footerMood">—</span>
 </footer>
+
+<div class="project-modal" id="projectModal" aria-hidden="true">
+  <div class="project-modal-backdrop" id="projectModalBackdrop"></div>
+
+  <div class="project-modal-content" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+    <button class="project-modal-close" id="projectModalClose" aria-label="Close modal">✕</button>
+
+    <div class="project-modal-label">Project details</div>
+    <h2 class="project-modal-title" id="projectModalTitle">Project Name</h2>
+
+    <div class="project-modal-section">
+      <div class="project-modal-section-label">Overview</div>
+      <p id="projectModalOverview"></p>
+    </div>
+
+    <div class="project-modal-section">
+      <div class="project-modal-section-label">At the time</div>
+      <p id="projectModalWorking"></p>
+    </div>
+
+    <div class="project-modal-section">
+      <div class="project-modal-section-label">Next</div>
+      <p id="projectModalNext"></p>
+    </div>
+  </div>
+</div>
 
 <script src = "script.js"></script>
 </body>
