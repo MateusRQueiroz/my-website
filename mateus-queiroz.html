@@ -5,10 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mateus Queiroz</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-<link rel = "stylesheet" href = "styles.css">
+<link rel="stylesheet" href="styles.css">
 <link rel="icon" type="image/png" href="/favicon.png">
 </head>
-
 
 <body>
 
@@ -17,6 +16,7 @@
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Stack</a></li>
     <li><a href="#signal">Now</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -27,7 +27,8 @@
   <div class="stars" id="stars"></div>
   <div class="moon" id="moon"></div>
   <div class="sun" id="sun"></div>
-
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
 
   <div class="skyline">
     <svg viewBox="0 0 1440 400" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +39,6 @@
         </linearGradient>
       </defs>
 
-      <!-- background buildings -->
       <rect x="0" y="180" width="80" height="220" fill="#0c1422"/>
       <rect x="60" y="140" width="60" height="260" fill="#0c1422"/>
       <rect x="110" y="200" width="100" height="200" fill="#0c1422"/>
@@ -61,7 +61,6 @@
       <rect x="1290" y="130" width="70" height="270" fill="#0c1422"/>
       <rect x="1350" y="190" width="90" height="210" fill="#0c1422"/>
 
-      <!-- other buildings -->
       <rect x="0" y="250" width="120" height="150" fill="url(#buildingGrad)"/>
       <rect x="100" y="210" width="90" height="190" fill="url(#buildingGrad)"/>
       <rect x="180" y="270" width="140" height="130" fill="url(#buildingGrad)"/>
@@ -69,8 +68,6 @@
       <rect x="380" y="230" width="120" height="170" fill="url(#buildingGrad)"/>
       <rect x="490" y="170" width="70" height="230" fill="url(#buildingGrad)"/>
       <rect x="550" y="240" width="110" height="160" fill="url(#buildingGrad)"/>
-
-      <!-- tower -->
       <rect x="650" y="100" width="60" height="300" fill="url(#buildingGrad)"/>
       <rect x="680" y="80" width="10" height="30" fill="#0f1729"/>
       <rect x="710" y="200" width="100" height="200" fill="url(#buildingGrad)"/>
@@ -82,14 +79,10 @@
       <rect x="1265" y="195" width="90" height="205" fill="url(#buildingGrad)"/>
       <rect x="1345" y="250" width="95" height="150" fill="url(#buildingGrad)"/>
 
-      <!-- Windows -->
-      <!-- building 1 -->
       <rect class="window-light" style="--fd:3.2s;--fdelay:0.1s" x="20" y="270" width="10" height="8" fill="#f0a500" opacity="0.7"/>
       <rect class="window-light" style="--fd:4.1s;--fdelay:0.5s" x="38" y="270" width="10" height="8" fill="#f0a500" opacity="0.6"/>
       <rect class="window-light" style="--fd:2.8s;--fdelay:1s" x="20" y="290" width="10" height="8" fill="#f0a500" opacity="0.8"/>
       <rect class="window-light" style="--fd:5s;--fdelay:0.3s" x="56" y="285" width="10" height="8" fill="#f0a500" opacity="0.5"/>
-
-      <!-- tower -->
       <rect class="window-light" style="--fd:3s;--fdelay:0.2s" x="660" y="130" width="8" height="6" fill="#f0a500" opacity="0.8"/>
       <rect class="window-light" style="--fd:4.5s;--fdelay:0.8s" x="675" y="130" width="8" height="6" fill="#f0a500" opacity="0.6"/>
       <rect class="window-light" style="--fd:3.7s;--fdelay:0.4s" x="660" y="150" width="8" height="6" fill="#f0a500" opacity="0.7"/>
@@ -98,8 +91,6 @@
       <rect class="window-light" style="--fd:3.4s;--fdelay:0.9s" x="675" y="170" width="8" height="6" fill="#f0a500" opacity="0.7"/>
       <rect class="window-light" style="--fd:5.1s;--fdelay:0.1s" x="660" y="190" width="8" height="6" fill="#f0a500" opacity="0.6"/>
       <rect class="window-light" style="--fd:3.8s;--fdelay:0.7s" x="675" y="210" width="8" height="6" fill="#f0a500" opacity="0.8"/>
-
-      <!-- other windows -->
       <rect class="window-light" style="--fd:4s;--fdelay:0.3s" x="200" y="290" width="10" height="7" fill="#f0a500" opacity="0.6"/>
       <rect class="window-light" style="--fd:3.3s;--fdelay:1.1s" x="220" y="290" width="10" height="7" fill="#f0a500" opacity="0.8"/>
       <rect class="window-light" style="--fd:4.7s;--fdelay:0.5s" x="240" y="295" width="10" height="7" fill="#f0a500" opacity="0.5"/>
@@ -129,12 +120,9 @@
       <rect class="window-light" style="--fd:5.3s;--fdelay:0.9s" x="1296" y="240" width="10" height="6" fill="#f0a500" opacity="0.6"/>
       <rect class="window-light" style="--fd:3.6s;--fdelay:0.5s" x="1365" y="270" width="11" height="7" fill="#f0a500" opacity="0.8"/>
       <rect class="window-light" style="--fd:4.4s;--fdelay:1.3s" x="1385" y="270" width="11" height="7" fill="#f0a500" opacity="0.5"/>
-
-      <!-- ground -->
       <rect x="0" y="395" width="1440" height="5" fill="#070b14"/>
     </svg>
   </div>
-
 
   <div class="hero-content">
     <div class="hero-tag" id="timeTag">Now</div>
@@ -146,8 +134,8 @@
     </div>
 
     <div class="hero-socials">
-      <a href="https://www.linkedin.com/in/YOUR-LINKEDIN/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://github.com/YOUR-GITHUB" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/mateus-r-queiroz/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/MateusRQueiroz" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="resume.pdf" download>Resume</a>
     </div>
   </div>
@@ -158,136 +146,210 @@
   </div>
 </div>
 
-<!-- work -->
 <hr class="divider">
 <section id="work">
   <div class="section-label reveal">Selected Work</div>
   <div class="work-grid">
 
-    <div class="work-card reveal">
+    <div class="work-card reveal tilt-card">
       <div class="work-year">2026</div>
       <div class="work-title">SearchLens</div>
       <p class="work-desc">A modular data pipeline that scrapes, cleans, and analyzes job listings from multiple sources, with support for easily adding new ones.</p>
       <div class="work-tags"><span class="tag">Python</span><span class="tag">Data Pipeline</span><span class="tag">SQLite</span></div>
-      <button
-        class="work-details-btn"
-        data-project="searchlens">
-        View details
-      </button>
+      <button class="work-details-btn" data-project="searchlens">View details</button>
     </div>
 
-    <div class="work-card reveal">
+    <div class="work-card reveal tilt-card">
       <div class="work-year">2026</div>
       <div class="work-title">Orbit <span style="opacity:0.6; font-size:0.8em;">(In Progress)</span></div>
       <p class="work-desc">An experimental journaling app that visualizes personal entries as an interactive graph of emotions and experiences.</p>
       <div class="work-tags"><span class="tag">In Progress</span><span class="tag">React</span><span class="tag">Visualization</span></div>
-      <button
-        class="work-details-btn"
-        data-project="orbit">
-        View details
-      </button>
+      <button class="work-details-btn" data-project="orbit">View details</button>
     </div>
 
-
-    <div class="work-card reveal">
+    <div class="work-card reveal tilt-card">
       <div class="work-year">2024</div>
       <div class="work-title">Password Vault</div>
       <p class="work-desc">A CLI password manager that encrypts credentials using a master password and stores them securely with persistent JSON storage.</p>
       <div class="work-tags"><span class="tag">Python</span><span class="tag">Encryption</span><span class="tag">CLI</span></div>
-      <button
-        class="work-details-btn"
-        data-project="vault">
-        View details
-      </button>
+      <button class="work-details-btn" data-project="vault">View details</button>
     </div>
 
-    <div class="work-card reveal">
+    <div class="work-card reveal tilt-card">
       <div class="work-year">2025</div>
       <div class="work-title">HabitFlow</div>
       <p class="work-desc">A command-line task and habit tracker that helps users manage work, track progress, and build streaks, with persistent JSON storage.</p>
       <div class="work-tags"><span class="tag">Java</span><span class="tag">JSON</span><span class="tag">CLI</span></div>
-      <button
-        class="work-details-btn"
-        data-project="habitflow">
-        View details
-      </button>
+      <button class="work-details-btn" data-project="habitflow">View details</button>
     </div>
 
-    <div class="work-card reveal">
+    <div class="work-card reveal tilt-card">
       <div class="work-year">2025</div>
       <div class="work-title">QuizMaker</div>
       <p class="work-desc">A CLI application that lets users create, edit, and take quizzes, with data saved persistently using JSON.</p>
       <div class="work-tags"><span class="tag">Java</span><span class="tag">JSON</span><span class="tag">CLI</span></div>
-      <button
-        class="work-details-btn"
-        data-project="quizmaker">
-        View details
-      </button>
+      <button class="work-details-btn" data-project="quizmaker">View details</button>
     </div>
 
-    <div class="work-card reveal">
+    <div class="work-card reveal tilt-card">
       <div class="work-year">2025</div>
       <div class="work-title">RQBestprices Website</div>
       <p class="work-desc">A business website for the Amazon reseller company RQBestprices.</p>
       <div class="work-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
-      <button
-        class="work-details-btn"
-        data-project="rqbestprices">
-        View details
-      </button>
+      <button class="work-details-btn" data-project="rqbestprices">View details</button>
     </div>
   </div>
 </section>
 
 <hr class="divider">
-
-<!-- about -->
 <section id="about">
   <div class="section-label reveal">About</div>
   <div class="about-layout">
-  <div class="about-text reveal">
-    <p>I'm a computer science student interested in <strong>how software is built and how it can be improved</strong>. I spend most of my time building projects and learning better ways to design and implement systems.</p>
-    <p>I've worked on <strong>data pipelines, CLI tools, and small systems</strong> focused on reliability, simplicity, and understanding how things behave in practice.</p>
-    <p>Currently interested in building projects that <strong>make everyday tasks easier</strong>. Open to internships, collaborations, learning opportunities, and contract work.</p>
-  </div>
+    <div class="about-text reveal">
+      <p>I'm a computer science student interested in <strong>how software is built and how it can be improved</strong>. I spend most of my time building projects and learning better ways to design and implement systems.</p>
+      <p>I've worked on <strong>data pipelines, CLI tools, and small systems</strong> focused on reliability, simplicity, and understanding how things behave in practice.</p>
+      <p>Currently interested in building projects that <strong>make everyday tasks easier</strong>. Open to internships, collaborations, learning opportunities, and contract work.</p>
+    </div>
     <div class="about-stats reveal">
-      <div class="stat">
-        <div class="stat-number">→</div>
-        <div class="stat-label">Building data pipelines</div>
+      <div class="stat"><div class="stat-number">→</div><div class="stat-label">Building data pipelines</div></div>
+      <div class="stat"><div class="stat-number">→</div><div class="stat-label">Learning system design</div></div>
+      <div class="stat"><div class="stat-number">→</div><div class="stat-label">Exploring visualization</div></div>
+      <div class="stat"><div class="stat-number">→</div><div class="stat-label">Shipping small tools</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+<section id="expertise">
+  <div class="section-label reveal">Skills + Coursework</div>
+
+  <div class="expertise-layout reveal">
+    <div class="expertise-intro tilt-card">
+      <div class="expertise-kicker">What I’m building with</div>
+      <h2>The tools and languages behind my projects.</h2>
+      <p>
+        These are the technologies I’ve been actively working with. Coursework is included below to show the academic side.
+      </p>
+
+      <div class="expertise-tabs" role="tablist" aria-label="Technical categories">
+        <button class="expertise-tab active" data-filter="all" type="button">All</button>
+        <button class="expertise-tab" data-filter="languages" type="button">Languages</button>
+        <button class="expertise-tab" data-filter="tools" type="button">Tools</button>
       </div>
-      <div class="stat">
-        <div class="stat-number">→</div>
-        <div class="stat-label">Learning system design</div>
+    </div>
+
+    <div class="expertise-panel">
+      <div class="skills-cloud tilt-card">
+        <div class="panel-label">Technical skills</div>
+
+        <div class="skills-cloud-grid" id="skillsCloud">
+          <span class="skill-pill" data-category="languages">
+            <span class="skill-name">Python</span>
+            <span class="skill-type">Language</span>
+          </span>
+
+          <span class="skill-pill" data-category="languages">
+            <span class="skill-name">Java</span>
+            <span class="skill-type">Language</span>
+          </span>
+
+          <span class="skill-pill" data-category="languages">
+            <span class="skill-name">JavaScript</span>
+            <span class="skill-type">Language</span>
+          </span>
+
+          <span class="skill-pill" data-category="languages">
+            <span class="skill-name">SQL</span>
+            <span class="skill-type">Language</span>
+          </span>
+
+          <span class="skill-pill" data-category="languages">
+            <span class="skill-name">HTML + CSS</span>
+            <span class="skill-type">Web basics</span>
+          </span>
+
+          <span class="skill-pill" data-category="tools">
+            <span class="skill-name">Git</span>
+            <span class="skill-type">Version control</span>
+          </span>
+
+          <span class="skill-pill" data-category="tools">
+            <span class="skill-name">Microsoft Office</span>
+            <span class="skill-type">Productivity</span>
+          </span>
+
+          <span class="skill-pill" data-category="tools">
+            <span class="skill-name">Google Workspace</span>
+            <span class="skill-type">Productivity</span>
+          </span>
+        </div>
       </div>
-      <div class="stat">
-        <div class="stat-number">→</div>
-        <div class="stat-label">Exploring visualization</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">→</div>
-        <div class="stat-label">Shipping small tools</div>
+
+      <div class="coursework-block">
+        <div class="panel-label">Coursework</div>
+
+        <div class="course-grid" id="courseGrid">
+          <article class="course-card tilt-card">
+            <div class="course-card-label">UMass Amherst</div>
+            <h3 class="course-title">Computer Science Coursework</h3>
+            <p class="course-desc">
+              Object-Oriented Programming, Data Structures, Programming Methodology,
+              Intro to Computation, Software Engineering, Intro to Algorithms,
+              and Computer Systems Principles.
+            </p>
+            <div class="course-meta">main coursework</div>
+          </article>
+
+          <article class="course-card tilt-card">
+            <div class="course-card-label">Math + reasoning</div>
+            <h3 class="course-title">Analytical Foundation</h3>
+            <p class="course-desc">
+              Calculus II, Calculus III, and Reasoning Under Uncertainty
+              (probability).
+            </p>
+            <div class="course-meta">Supporting Coursework</div>
+          </article>
+
+          <article class="course-card tilt-card">
+            <div class="course-card-label">Suffolk University</div>
+            <h3 class="course-title">Earlier CS background</h3>
+            <p class="course-desc">
+              Foundations of Computer Science in Python, Calculus,
+              and Computational Science using NetLogo.
+            </p>
+            <div class="course-meta">early coursework</div>
+          </article>
+
+          <article class="course-card tilt-card">
+            <div class="course-card-label">How it shows up</div>
+            <h3 class="course-title">Applied in projects</h3>
+            <p class="course-desc">
+              These courses are present in the way I build. From program structure,
+              to problem solving, I always actively try to apply what I learn in class to development.
+            </p>
+            <div class="course-meta">Practical overlap</div>
+          </article>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <hr class="divider">
-
-<!-- signal -->
 <section id="signal">
   <div class="section-label reveal">Now</div>
   <div class="signal-grid reveal">
-    <div class="signal-card">
+    <div class="signal-card tilt-card">
       <div class="signal-type">Reading</div>
       <div class="signal-content">Antifragile: Things That Gain From Disorder</div>
       <div class="signal-meta">Nassim Taleb — figuring out how to make antifragile code</div>
     </div>
-    <div class="signal-card">
+    <div class="signal-card tilt-card">
       <div class="signal-type">Building</div>
       <div class="signal-content">Orbit — a visual journaling app</div>
       <div class="signal-meta">Exploring how entries can be represented as interactive graphs</div>
     </div>
-    <div class="signal-card">
+    <div class="signal-card tilt-card">
       <div class="signal-type">Thinking about</div>
       <div class="signal-content">How to structure projects so they stay simple as they grow</div>
       <div class="signal-meta">Balancing flexibility with clarity</div>
@@ -296,8 +358,6 @@
 </section>
 
 <hr class="divider">
-
-<!-- contact -->
 <section id="contact">
   <div class="section-label reveal">Contact</div>
   <div class="contact-layout">
@@ -305,46 +365,27 @@
       Let’s work on something worth <em>building</em>.
     </div>
     <div class="contact-options reveal">
-  <a class="contact-option" href="mailto:romaomatq@gmail.com">
-    <div>
-      <div class="contact-option-label">Hire me</div>
-      <div class="contact-option-sub">Internship or contract work</div>
+      <a class="contact-option" href="mailto:romaomatq@gmail.com">
+        <div><div class="contact-option-label">Hire me</div><div class="contact-option-sub">Internship or contract work</div></div>
+        <span class="contact-arrow">→</span>
+      </a>
+      <a class="contact-option" href="mailto:romaomatq@gmail.com">
+        <div><div class="contact-option-label">Collaborate</div><div class="contact-option-sub">Open source or side projects</div></div>
+        <span class="contact-arrow">→</span>
+      </a>
+      <a class="contact-option" href="https://www.linkedin.com/in/mateus-r-queiroz/" target="_blank" rel="noopener noreferrer">
+        <div><div class="contact-option-label">LinkedIn</div><div class="contact-option-sub">Professional profile</div></div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a class="contact-option" href="https://github.com/MateusRQueiroz" target="_blank" rel="noopener noreferrer">
+        <div><div class="contact-option-label">GitHub</div><div class="contact-option-sub">Projects and code</div></div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a class="contact-option" href="resume.pdf" download>
+        <div><div class="contact-option-label">Resume</div><div class="contact-option-sub">Download PDF</div></div>
+        <span class="contact-arrow">↓</span>
+      </a>
     </div>
-    <span class="contact-arrow">→</span>
-  </a>
-
-  <a class="contact-option" href="mailto:romaomatq@gmail.com">
-    <div>
-      <div class="contact-option-label">Collaborate</div>
-      <div class="contact-option-sub">Open source or side projects</div>
-    </div>
-    <span class="contact-arrow">→</span>
-  </a>
-
-  <a class="contact-option" href="https://www.linkedin.com/in/mateus-r-queiroz/" target="_blank" rel="noopener noreferrer">
-    <div>
-      <div class="contact-option-label">LinkedIn</div>
-      <div class="contact-option-sub">Professional profile</div>
-    </div>
-    <span class="contact-arrow">↗</span>
-  </a>
-
-  <a class="contact-option" href="https://github.com/MateusRQueiroz" target="_blank" rel="noopener noreferrer">
-    <div>
-      <div class="contact-option-label">GitHub</div>
-      <div class="contact-option-sub">Projects and code</div>
-    </div>
-    <span class="contact-arrow">↗</span>
-  </a>
-
-  <a class="contact-option" href="resume.pdf" download>
-    <div>
-      <div class="contact-option-label">Resume</div>
-      <div class="contact-option-sub">Download PDF</div>
-    </div>
-    <span class="contact-arrow">↓</span>
-  </a>
-</div>
   </div>
 </section>
 
@@ -355,23 +396,18 @@
 
 <div class="project-modal" id="projectModal" aria-hidden="true">
   <div class="project-modal-backdrop" id="projectModalBackdrop"></div>
-
   <div class="project-modal-content" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
     <button class="project-modal-close" id="projectModalClose" aria-label="Close modal">✕</button>
-
     <div class="project-modal-label">Project details</div>
     <h2 class="project-modal-title" id="projectModalTitle">Project Name</h2>
-
     <div class="project-modal-section">
       <div class="project-modal-section-label">Overview</div>
       <p id="projectModalOverview"></p>
     </div>
-
     <div class="project-modal-section">
       <div class="project-modal-section-label">At the time</div>
       <p id="projectModalWorking"></p>
     </div>
-
     <div class="project-modal-section">
       <div class="project-modal-section-label">Next</div>
       <p id="projectModalNext"></p>
@@ -379,6 +415,6 @@
   </div>
 </div>
 
-<script src = "script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
