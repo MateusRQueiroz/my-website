@@ -106,8 +106,8 @@ const projectDetails = {
   searchlens: {
     title: "SearchLens",
     overview: "A modular data pipeline for collecting, cleaning, and analyzing job listings.",
-    working: "Built scraping pipeline, normalization, and deduplication logic.",
-    next: "Add analytics dashboard + more sources."
+    working: "Working on analytics dashboard + more sources.",
+    next: "Add application tracking functionality."
   },
   orbit: {
     title: "Orbit",
@@ -120,6 +120,24 @@ const projectDetails = {
     overview: "CLI password manager with encryption.",
     working: "Focused on secure storage and CLI UX.",
     next: "Add better encryption + usability."
+  },
+  habitflow: {
+    title: "HabitFlow",
+    overview: "CLI habit tracker with persistent storage.",
+    working: "Working on an interactive dashboard for the user.",
+    next: "Add safe user authentication."
+  },
+  quizmaker: {
+    title: "QuizMaker",
+    overview: "CLI app for creating, editing, and taking quizzes.",
+    working: "Working on an interactive dashboard for the user.",
+    next: "Allow for users to share quizzes with friends easily."
+  },
+  quizmaker: {
+    title: "QuizMaker",
+    overview: "CLI app for creating, editing, and taking quizzes.",
+    working: "Working on an interactive dashboard for the user.",
+    next: "Allow for users to share quizzes with friends easily."
   }
 };
 
