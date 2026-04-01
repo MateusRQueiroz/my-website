@@ -99,7 +99,7 @@ function initReveal() {
 }
 
 // =========================
-// PROJECT MODAL (CLEANED)
+// PROJECT MODAL 
 // =========================
 
 const projectDetails = {
