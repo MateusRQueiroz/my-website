@@ -1,0 +1,125 @@
+:root {
+  --ink: #05060e;
+  --night: #0b0e22;
+  --panel: rgba(9, 11, 26, 0.9);
+  --ivory: #f1ead9;
+  --muted: #bdb8cc;
+  --faint: #9a96ae;
+  --gold: #dcb575;
+  --gold-bright: #f2d39a;
+  --lapis: #8ea4ee;
+  --rose: #e7a6bb;
+  --line: rgba(220, 181, 117, 0.28);
+  --line-soft: rgba(241, 234, 217, 0.13);
+  --gutter: clamp(1rem, 5vw, 4.5rem);
+  --nav-h: 60px;
+  --display: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  --engraved: 'Cinzel', 'Trajan Pro', Georgia, serif;
+  --body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --marble: radial-gradient(circle at 34% 28%, #fdfaf4 0%, #ebe5da 34%, #c9c1bf 66%, #8f8798 100%);
+  --veins: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='v'><feTurbulence type='fractalNoise' baseFrequency='0.03 0.11' numOctaves='3' seed='9'/><feColorMatrix values='0 0 0 0 0.42  0 0 0 0 0.4  0 0 0 0 0.48  0 0 0 -3 1.55'/></filter><rect width='120' height='120' filter='url(%23v)'/></svg>");
+  color-scheme: dark;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body { background: var(--ink); color: var(--ivory); font: 400 1rem/1.65 var(--body); min-height: 100vh; overflow-x: hidden; }
+button, input, select { font: inherit; color: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+a { color: var(--ivory); text-decoration-color: var(--line); text-underline-offset: 0.22em; }
+a:hover { color: var(--gold-bright); text-decoration-color: currentColor; }
+ul, ol { list-style: none; }
+::selection { background: var(--gold); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; border-radius: 3px; }
+h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus { outline: none; }
+h1, h2 { scroll-margin-top: calc(var(--nav-h) + 24px); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.app { position: relative; min-height: 100vh; }
+.main { position: relative; z-index: 2; outline: none; }
+
+.skip-link { position: fixed; top: 0.6rem; left: 0.6rem; z-index: 100; padding: 0.7rem 1rem; background: var(--gold-bright); color: var(--ink); font-weight: 600; text-decoration: none; transform: translateY(-200%); }
+.skip-link:focus { transform: none; }
+
+.eyebrow { display: flex; align-items: center; gap: 0.6rem; font: 500 0.74rem/1.4 var(--engraved); letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+.greek { font-family: Georgia, 'Times New Roman', serif; text-transform: none; letter-spacing: 0; font-style: italic; font-size: 1.05em; }
+.block-title { font: 500 0.74rem/1.4 var(--engraved); letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chips li { font-size: 0.8rem; padding: 0.28rem 0.7rem; border: 1px solid var(--line-soft); border-radius: 999px; color: var(--ivory); background: rgba(241, 234, 217, 0.04); }
+.btn-quiet {
+  display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0.5rem 1.1rem; cursor: pointer;
+  font: 500 0.86rem var(--body); color: var(--ivory); background: rgba(241, 234, 217, 0.05); border: 1px solid var(--line); border-radius: 999px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-quiet:hover { border-color: var(--gold-bright); background: rgba(220, 181, 117, 0.1); }
+
+/* Marble medallion with an engraved glyph. */
+.medallion {
+  position: relative; display: grid; place-items: center; flex: none; width: 56px; height: 56px; border-radius: 50%;
+  background: var(--veins), var(--marble); background-size: 120px, cover;
+  color: #4a4358; box-shadow: 0 0 0 1.5px var(--gold), 0 0 0 5px rgba(220, 181, 117, 0.12), 0 10px 26px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.medallion svg { width: 62%; height: 62%; }
+.medallion-sm { width: 30px; height: 30px; box-shadow: 0 0 0 1px var(--gold); }
+
+/* ------------------------------------------------------------- navbar */
+.navbar {
+  position: fixed; inset: 0 0 auto; z-index: 30; height: var(--nav-h);
+  display: flex; align-items: center; gap: 1rem; padding: 0 var(--gutter);
+  background: linear-gradient(to bottom, rgba(5, 6, 14, 0.9), rgba(5, 6, 14, 0.62));
+  border-bottom: 1px solid var(--line-soft);
+}
+.nav-brand { display: inline-flex; align-items: center; gap: 0.55rem; min-height: 44px; text-decoration: none; margin-right: auto; }
+.brand-mark { display: grid; place-items: center; width: 28px; height: 28px; color: var(--gold); }
+.brand-mark svg { width: 100%; height: 100%; }
+.brand-name { font: 600 1.28rem/1 var(--display); letter-spacing: 0.01em; }
+.nav-main { display: flex; align-items: center; gap: 0.5rem; }
+.nav-group { display: flex; align-items: center; gap: 0.1rem; }
+.nav-group a {
+  position: relative; display: inline-flex; align-items: center; gap: 0.4rem; min-height: 44px; padding: 0 0.7rem;
+  font: 500 0.86rem var(--body); color: var(--muted); text-decoration: none;
+}
+.nav-group a:hover, .nav-group a[aria-current="page"] { color: var(--ivory); }
+.nav-group a[aria-current="page"]::after { content: ''; position: absolute; left: 0.7rem; right: 0.7rem; bottom: 9px; height: 1px; background: var(--gold); }
+.nav-glyph { display: inline-grid; width: 18px; height: 18px; color: var(--gold); }
+.nav-glyph svg { width: 100%; height: 100%; }
+.nav-divider { width: 1px; height: 20px; background: var(--line-soft); margin: 0 0.35rem; }
+.nav-resume {
+  display: inline-flex; align-items: center; gap: 0.45rem; min-height: 40px; padding: 0 1rem; margin-left: 0.4rem;
+  font: 600 0.86rem var(--body); color: var(--ink); background: linear-gradient(180deg, var(--gold-bright), var(--gold)); border-radius: 999px; text-decoration: none;
+  box-shadow: 0 0 0 1px rgba(242, 211, 154, 0.5), 0 6px 18px rgba(220, 181, 117, 0.18);
+}
+.nav-resume:hover { color: var(--ink); filter: brightness(1.06); }
+.nav-resume svg { width: 16px; height: 16px; }
+.nav-toggle { display: none; }
+.nav-sheet { display: none; }
+
+@media (max-width: 960px) {
+  .nav-main { display: none; }
+  .nav-toggle {
+    display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0 0.9rem; cursor: pointer;
+    font: 500 0.86rem var(--body); background: transparent; border: 1px solid var(--line-soft); border-radius: 999px;
+  }
+  .toggle-bars { width: 14px; height: 9px; border-top: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; }
+  .nav-sheet { display: block; position: absolute; top: var(--nav-h); left: 0; right: 0; padding: 0.75rem var(--gutter) 1.25rem; background: #07081a; border-bottom: 1px solid var(--line); }
+  .nav-sheet nav { display: grid; gap: 0.4rem; }
+  .nav-sheet .nav-group { flex-direction: column; align-items: stretch; }
+  .nav-sheet .nav-group a { min-height: 48px; font-size: 1rem; padding: 0 0.25rem; }
+  .nav-sheet .nav-group a[aria-current="page"]::after { left: 0.25rem; right: auto; width: 2.5rem; bottom: 10px; }
+  .nav-sheet .nav-divider { width: 100%; height: 1px; margin: 0.25rem 0; }
+}
+@media (max-width: 420px) {
+  .brand-name { font-size: 1.08rem; }
+  .nav-brand { gap: 0.35rem; }
+  .brand-mark { width: 20px; }
+  .nav-resume { padding: 0 0.8rem; }
+  .navbar { gap: 0.5rem; }
+}
+
+.site-footer { position: relative; z-index: 2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 2rem; padding: 2rem var(--gutter) 2.5rem; border-top: 1px solid var(--line-soft); color: var(--faint); font-size: 0.84rem; background: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+}
