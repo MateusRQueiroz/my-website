@@ -2,7 +2,7 @@ name: Deploy GitHub Pages
 
 on:
   push:
-    branches: [feature/react-portfolio]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
