@@ -1,0 +1,133 @@
+/* ------------------------------------------------------------------ stage */
+.stage { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: var(--ink); }
+.stage-placeholder {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(11% 7% at 50% 46%, rgba(255, 230, 196, 0.55), transparent 70%),
+    radial-gradient(26% 14% at 50% 46%, rgba(170, 140, 220, 0.22), transparent 75%),
+    radial-gradient(60% 40% at 50% 60%, rgba(60, 60, 150, 0.2), transparent 80%),
+    linear-gradient(#05070f, #0d0f2a 55%, #05060e);
+}
+.universe-canvas { position: absolute !important; inset: 0; width: 100% !important; height: 100% !important; opacity: 0; transition: opacity 1.1s ease; }
+.stage.is-visible .universe-canvas { opacity: 1; }
+.stage canvas { display: block; }
+.stage-veil { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; }
+/* Sections: the destination close-up stays at the top; the page darkens below it. */
+.app.is-section .stage-veil {
+  opacity: 1;
+  background: linear-gradient(to bottom, rgba(5, 6, 14, 0.05) 0%, rgba(5, 6, 14, 0.35) 22vh, rgba(5, 6, 14, 0.88) 44vh, var(--ink) 64vh);
+}
+.app.view-is-galaxy .stage-veil { opacity: 1; background: radial-gradient(70% 55% at 50% 45%, transparent 55%, rgba(5, 6, 14, 0.45) 100%); }
+/* Keep the painted galaxy visible in flight; deepen the reading veil on arrival. */
+.app.is-in-transit .stage-veil { opacity: 0.12; transition-duration: 0.45s; }
+
+/* --------------------------------------------------------------- astronaut */
+.astronaut {
+  --s: min(90vh, 96vw);
+  position: fixed; z-index: 1; pointer-events: none;
+  width: var(--s); height: var(--s);
+  left: calc(33vw - 0.948 * var(--s)); bottom: calc(45vh - 0.548 * var(--s));
+  transform-origin: 20% 90%;
+  animation: drift 11s ease-in-out infinite alternate;
+  transition: opacity 1.2s ease, transform 1.8s cubic-bezier(0.5, 0, 0.75, 0.2);
+}
+.astronaut .astronaut-arm { transition: transform 0.9s cubic-bezier(0.3, 0.7, 0.2, 1); transform-origin: 47% 80%; }
+.astronaut.is-reaching .astronaut-arm { transform: rotate(-1.2deg) translate(10px, -6px); }
+.astronaut.is-departing { animation: none; opacity: 0; transform: translate(-22vw, 18vh) scale(1.35) rotate(-6deg); }
+@keyframes drift { from { transform: translate(0, 0) rotate(0deg); } to { transform: translate(6px, -8px) rotate(-0.6deg); } }
+@media (max-aspect-ratio: 9/10) {
+  .astronaut { --s: 116vw; left: -40vw; bottom: -12vh; transform: rotate(-24deg); animation: none; }
+  .astronaut.is-departing { transform: translate(-30vw, 20vh) rotate(-30deg) scale(1.3); }
+}
+
+/* ---------------------------------------------------------------- universe */
+.view-universe { position: relative; min-height: 100svh; }
+.galaxy-target { position: absolute; border: 0; border-radius: 50%; background: transparent; cursor: pointer; z-index: 3; }
+.galaxy-target:focus-visible { outline: none; }
+.target-ring {
+  position: absolute; inset: 0; border-radius: 50%; border: 1px dashed rgba(242, 211, 154, 0.0);
+  transition: border-color 0.4s ease, inset 0.5s ease;
+}
+.galaxy-target:hover .target-ring, .galaxy-target:focus-visible .target-ring { border-color: rgba(242, 211, 154, 0.7); inset: -8px; }
+.galaxy-target:focus-visible .target-ring { border-style: solid; box-shadow: 0 0 0 2px rgba(242, 211, 154, 0.35); }
+.galaxy-cue { position: absolute; z-index: 3; transform: translateX(-50%); display: grid; justify-items: center; gap: 0.5rem; pointer-events: none; }
+.cue-line { width: 1px; height: 28px; background: linear-gradient(var(--gold), transparent); }
+.cue-label { white-space: nowrap; font: 500 0.78rem/1 var(--engraved); letter-spacing: 0.34em; text-transform: uppercase; color: var(--gold-bright); animation: breathe 3.6s ease-in-out infinite; padding-left: 0.34em; }
+.galaxy-target:hover ~ .galaxy-cue .cue-label, .galaxy-target:focus-visible ~ .galaxy-cue .cue-label { animation: none; opacity: 1; color: #fff3da; }
+@keyframes breathe { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+.universe-note { position: absolute; z-index: 3; right: var(--gutter); bottom: 2rem; max-width: 300px; font-size: 0.86rem; color: var(--muted); text-align: right; line-height: 1.55; }
+.universe-note strong { font: 600 1.05rem var(--display); color: var(--ivory); }
+@media (max-aspect-ratio: 9/10) { .universe-note { left: 38vw; right: 1rem; bottom: 1.25rem; font-size: 0.8rem; } }
+
+/* ------------------------------------------------------------------ intro */
+.intro { position: fixed; inset: 0; z-index: 25; pointer-events: none; }
+.intro-stage { position: absolute; left: 50%; top: 50%; width: min(88vw, 820px); transform: translate(-50%, -50%); display: grid; place-items: center; text-align: center; }
+.intro-stage > * { grid-area: 1 / 1; }
+.intro::before { content: ''; position: absolute; left: 50%; top: 50%; width: min(110vw, 1100px); height: 46vh; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgba(16, 8, 18, 0.46), rgba(16, 8, 18, 0.22) 62%, transparent); }
+.intro-beat {
+  font: italic 500 clamp(1.5rem, 3.2vw, 2.4rem)/1.35 var(--display); color: var(--ivory);
+  text-shadow: 0 0 28px rgba(5, 6, 14, 0.95), 0 0 6px rgba(5, 6, 14, 0.8);
+  opacity: 0;
+  animation: beat-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--in) both, beat-out 700ms ease calc(var(--in) + var(--hold) - 700ms) forwards;
+}
+.intro-title { opacity: 0; animation: beat-in 1200ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--in) both, beat-out 700ms ease calc(var(--in) + var(--hold) - 700ms) forwards; }
+.intro-name { font: 600 clamp(3rem, 8.5vw, 6.6rem)/1 var(--display); letter-spacing: 0.01em; text-shadow: 0 0 40px rgba(5, 6, 14, 0.9); }
+.intro-role {
+  margin-top: 1rem; font: 500 clamp(0.8rem, 1.6vw, 1.05rem) var(--engraved); letter-spacing: 0.5em; padding-left: 0.5em; text-transform: uppercase; color: var(--gold-bright);
+  opacity: 0; animation: beat-in 900ms ease calc(var(--in) + 500ms) both;
+}
+@keyframes beat-in { from { opacity: 0; filter: blur(8px); transform: translateY(10px); letter-spacing: 0.04em; } to { opacity: 1; filter: blur(0); transform: none; } }
+@keyframes beat-out { to { opacity: 0; filter: blur(4px); transform: translateY(-6px); } }
+.skip-intro {
+  position: fixed; right: var(--gutter); bottom: 1.75rem; pointer-events: auto; min-height: 44px; padding: 0 1.2rem; cursor: pointer;
+  font: 500 0.86rem var(--body); color: var(--ivory); background: rgba(5, 6, 14, 0.72); border: 1px solid var(--line); border-radius: 999px;
+}
+.skip-intro:hover { border-color: var(--gold-bright); color: var(--gold-bright); }
+
+/* ----------------------------------------------------------------- galaxy */
+.view-galaxy { position: relative; min-height: 100svh; }
+.marks ul { position: absolute; inset: 0; }
+.mark { position: absolute; z-index: 3; visibility: hidden; opacity: 0; }
+.view-galaxy.is-revealed .mark { visibility: visible; animation: mark-in 700ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i) * 140ms + 150ms) both; }
+@keyframes mark-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.mark a { position: absolute; left: 0; top: 0; width: max-content; display: flex; align-items: center; gap: 0.85rem; transform: translate(-28px, -50%); text-decoration: none; min-height: 56px; padding: 0.25rem 0.9rem 0.25rem 0; border-radius: 999px; }
+.mark.side-left a { flex-direction: row-reverse; transform: translate(calc(-100% + 28px), -50%); padding: 0.25rem 0 0.25rem 0.9rem; text-align: right; }
+.mark-text { display: grid; padding: 0.45rem 0.8rem; background: rgba(5, 6, 14, 0.72); border: 1px solid var(--line-soft); border-radius: 10px; transition: border-color 0.25s, background 0.25s; }
+.mark-letter { font: 500 0.72rem/1 var(--engraved); color: var(--gold); letter-spacing: 0.1em; }
+.mark-label { font: 600 1.35rem/1.15 var(--display); color: var(--ivory); }
+.mark-purpose { font-size: 0.8rem; color: var(--muted); max-width: 220px; }
+.mark a:hover .medallion, .mark a:focus-visible .medallion { transform: scale(1.08); box-shadow: 0 0 0 1.5px var(--gold-bright), 0 0 0 7px rgba(242, 211, 154, 0.22), 0 0 34px rgba(242, 211, 154, 0.35); }
+.mark a:hover .mark-text, .mark a:focus-visible .mark-text { border-color: var(--gold); background: rgba(9, 11, 26, 0.92); }
+.mark a:focus-visible { outline-offset: 6px; }
+.galaxy-plaque {
+  position: absolute; z-index: 3; left: var(--gutter); bottom: 2.25rem; max-width: 330px; padding: 1.1rem 1.3rem 1.2rem;
+  background: var(--panel); border: 1px solid var(--line);
+  opacity: 0; transition: opacity 0.8s ease 0.2s;
+}
+.view-galaxy.is-revealed .galaxy-plaque { opacity: 1; }
+.galaxy-plaque::before, .galaxy-plaque::after { content: ''; position: absolute; width: 14px; height: 14px; border: 1px solid var(--gold); }
+.galaxy-plaque::before { top: -4px; left: -4px; border-right: 0; border-bottom: 0; }
+.galaxy-plaque::after { bottom: -4px; right: -4px; border-left: 0; border-top: 0; }
+.galaxy-plaque h1 { font: 600 2.1rem/1.05 var(--display); margin-top: 0.35rem; }
+.plaque-role { font: 500 0.78rem var(--engraved); letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-bright); margin-top: 0.4rem; }
+.plaque-hint { margin-top: 0.6rem; font-size: 0.86rem; color: var(--muted); }
+@media (max-aspect-ratio: 9/10) {
+  .galaxy-plaque { left: 1rem; right: 1rem; bottom: 1rem; max-width: none; padding: 0.85rem 1rem; }
+  .galaxy-plaque h1 { font-size: 1.6rem; }
+  .mark-purpose { display: none; }
+  .mark-label { font-size: 1.15rem; }
+  .medallion { width: 46px; height: 46px; }
+  .mark a { transform: translate(-23px, -50%); min-height: 48px; }
+  .mark.side-left a { transform: translate(calc(-100% + 23px), -50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .astronaut { animation: none; transition: opacity 0.4s ease; }
+  .astronaut.is-departing { transform: none; }
+  .cue-label { animation: none; opacity: 0.9; }
+  .intro-beat, .intro-title, .intro-role { animation-name: fade-in, fade-out; }
+  .view-galaxy.is-revealed .mark { animation-name: fade-in; }
+  .universe-canvas, .stage-veil { transition-duration: 0.3s; }
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-out { to { opacity: 0; } }

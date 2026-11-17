@@ -1,0 +1,142 @@
+/* ------------------------------------------------------------------
+   Classical cosmos: shared engraved details, the course sequence, and
+   the section illustrations.
+   ------------------------------------------------------------------ */
+
+/* Medallions get an engraved, graduated rim. */
+.medallion::after {
+  content: ''; position: absolute; inset: -7px; border-radius: 50%; pointer-events: none;
+  background: repeating-conic-gradient(from 0deg, rgba(220, 181, 117, 0.55) 0 1.2deg, transparent 1.2deg 15deg);
+  -webkit-mask: radial-gradient(closest-side, transparent 86%, #000 88%, #000 100%); mask: radial-gradient(closest-side, transparent 86%, #000 88%, #000 100%);
+  opacity: 0.8;
+}
+.medallion-sm::after { inset: -4px; opacity: 0.6; }
+
+/* Landing: a quiet line above the galaxy, set in the same inscription voice. */
+.galaxy-epigraph {
+  position: absolute; z-index: 3; transform: translate(-50%, -100%); width: max-content; max-width: 88vw; text-align: center; pointer-events: none;
+  font: italic 500 clamp(1rem, 1.6vw, 1.28rem)/1.3 var(--display); color: rgba(241, 234, 217, 0.82); letter-spacing: 0.02em;
+  text-shadow: 0 0 18px rgba(5, 6, 14, 0.9);
+  animation: epigraph-in 2.4s ease 1.2s both;
+}
+.galaxy-epigraph::before, .galaxy-epigraph::after { content: '·'; color: var(--gold); margin: 0 0.6em; }
+@keyframes epigraph-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* Destination sequence: selection, course, arrival. */
+.mark.is-selected .medallion { transform: scale(1.12); box-shadow: 0 0 0 1.5px var(--gold-bright), 0 0 0 9px rgba(242, 211, 154, 0.25), 0 0 46px rgba(242, 211, 154, 0.55); }
+.mark.is-selected .medallion::before { content: ''; position: absolute; inset: -14px; border-radius: 50%; border: 1px solid rgba(242, 211, 154, 0.7); animation: course-pulse 1.1s ease-out infinite; }
+.mark.is-selected .mark-text { border-color: var(--gold); background: rgba(14, 16, 38, 0.95); }
+.view-galaxy.is-setting-course .mark:not(.is-selected) { opacity: 0.32 !important; transition: opacity 0.45s ease; }
+.view-galaxy.is-setting-course .galaxy-plaque { opacity: 0.25; transition: opacity 0.45s ease; }
+@keyframes course-pulse { from { transform: scale(0.85); opacity: 1; } to { transform: scale(1.35); opacity: 0; } }
+
+.course {
+  position: fixed; z-index: 24; left: 50%; bottom: 2.4rem; transform: translateX(-50%); display: grid; justify-items: center; gap: 0.35rem; pointer-events: none;
+  animation: course-in 0.5s ease both;
+}
+.course-rule { width: 140px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.course-kicker { font: 500 0.7rem var(--engraved); letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); padding-left: 0.3em; }
+.course-name { font: 600 clamp(1.6rem, 3vw, 2.2rem)/1 var(--display); color: var(--ivory); text-shadow: 0 0 22px rgba(5, 6, 14, 0.9); }
+.course-name .greek { color: var(--gold-bright); margin-right: 0.2em; }
+.course-travel .course-rule { animation: rule-travel 2.2s ease-in-out both; }
+@keyframes course-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+@keyframes rule-travel { from { width: 40px; } to { width: 220px; } }
+
+/* While the camera travels the page waits; it assembles once the camera settles. */
+.view-frame.is-arriving { visibility: hidden; }
+.view-frame.is-arriving .section-page > * { animation: none; }
+.view-frame.is-leaving { opacity: 0; transition: opacity 0.4s ease; }
+.view-frame.is-leaving .section-page > * { animation: none; }
+
+/* ------------------------------------------------------------------ toolkit */
+.toolkit-body { display: grid; grid-template-columns: minmax(240px, 360px) minmax(0, 1fr); gap: 3rem; align-items: center; }
+.toolkit-art { position: relative; aspect-ratio: 360 / 380; }
+.toolkit-scene { position: absolute; inset: 0; }
+.toolkit-scene.is-entering { animation: scene-in 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.toolkit-scene.is-leaving { animation: scene-out 0.5s ease both; }
+@keyframes scene-in { from { opacity: 0; transform: scale(0.9) rotate(-8deg); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes scene-out { to { opacity: 0; transform: scale(1.06) rotate(6deg); filter: blur(3px); } }
+.toolkit-svg { width: 100%; height: 100%; overflow: visible; }
+.tk-title { font: 500 15px var(--engraved); letter-spacing: 0.24em; text-transform: uppercase; fill: var(--gold-bright); }
+.tk-subtitle { font: italic 500 13px var(--display); fill: var(--muted); }
+.tk-label { font: 600 13px var(--body); fill: var(--ivory); paint-order: stroke; stroke: #05060e; stroke-width: 3px; stroke-linejoin: round; }
+.tk-greek { font: italic 600 15px Georgia, serif; fill: #3b3020; letter-spacing: 0.12em; }
+.tk-draw { stroke-dasharray: 120; animation: draw 1.4s ease both; }
+.tk-region { animation: fade-in 0.6s ease both; }
+@keyframes draw { from { stroke-dashoffset: 120; } to { stroke-dashoffset: 0; } }
+.toolkit-tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+.toolkit-tabs button { min-height: 44px; padding: 0 1rem; cursor: pointer; border-radius: 999px; background: transparent; border: 1px solid var(--line-soft); color: var(--muted); font: 500 0.9rem var(--body); transition: background 0.25s, color 0.25s, border-color 0.25s; }
+.toolkit-tabs button[aria-selected="true"] { color: var(--ink); background: var(--gold-bright); border-color: var(--gold-bright); box-shadow: 0 0 0 4px rgba(242, 211, 154, 0.14); }
+.toolkit-tabs button:hover { border-color: var(--gold); color: var(--ivory); }
+.toolkit-tabs button[aria-selected="true"]:hover { color: var(--ink); }
+.toolkit-panel { animation: rise 400ms ease both; }
+
+/* --------------------------------------------------------------- projects */
+.star-emblem { display: grid; place-items: center; width: 38px; height: 38px; margin-bottom: 0.4rem; border-radius: 50%; color: var(--faint); border: 1px solid var(--line-soft); transition: color 0.25s, border-color 0.25s, box-shadow 0.25s; }
+.star-emblem svg { width: 26px; height: 26px; }
+.star-tab[aria-selected="true"] .star-emblem { color: var(--gold-bright); border-color: var(--gold); box-shadow: 0 0 22px rgba(242, 211, 154, 0.3); }
+.project-visual { position: relative; display: grid; gap: 0.75rem; }
+.frame-head { display: flex; align-items: center; gap: 0.7rem; font: italic 500 1.02rem/1.35 var(--display); color: var(--muted); }
+.frame-emblem { flex: none; display: grid; place-items: center; width: 40px; height: 40px; color: var(--gold-bright); border-radius: 50%; border: 1px solid var(--gold); background: radial-gradient(circle, rgba(242, 211, 154, 0.12), transparent 70%); }
+.frame-emblem svg { width: 26px; height: 26px; }
+/* engraved corner ornaments on the diagram plate */
+.project-visual .schematic { position: relative; }
+.project-visual .schematic::before, .project-visual .schematic::after { content: ''; position: absolute; width: 18px; height: 18px; border: 1px solid var(--gold); pointer-events: none; }
+.project-visual .schematic::before { top: 6px; left: 6px; border-right: 0; border-bottom: 0; }
+.project-visual .schematic::after { bottom: 6px; right: 6px; border-left: 0; border-top: 0; }
+.frame-searchlens .schematic { background: radial-gradient(120% 60% at 50% 0%, rgba(142, 164, 238, 0.08), transparent 60%), linear-gradient(180deg, rgba(14, 16, 38, 0.92), rgba(9, 11, 26, 0.92)); }
+.frame-umarket .schematic { background: radial-gradient(120% 60% at 50% 0%, rgba(242, 211, 154, 0.09), transparent 60%), linear-gradient(180deg, rgba(14, 16, 38, 0.92), rgba(9, 11, 26, 0.92)); }
+.frame-utrace .schematic { background: radial-gradient(120% 60% at 50% 0%, rgba(231, 166, 187, 0.08), transparent 60%), linear-gradient(180deg, rgba(14, 16, 38, 0.92), rgba(9, 11, 26, 0.92)); }
+.graph-chart { stroke: var(--gold); stroke-width: 0.8; opacity: 0.2; }
+.paper .paper-orbit { fill: none; stroke: var(--gold); stroke-width: 0.8; stroke-dasharray: 1 4; opacity: 0.6; }
+.paper-star { fill: var(--gold-bright); opacity: 0.9; }
+.flow-step { box-shadow: inset 2px 0 rgba(220, 181, 117, 0.16); }
+.flow-step.is-key { box-shadow: inset 2px 0 var(--gold); }
+.lane-api .lane-title { color: var(--gold-bright); }
+.voyage::after {
+  content: ''; position: absolute; pointer-events: none; left: 5px; top: 2.5rem; bottom: 2rem; width: 13px;
+  background: repeating-linear-gradient(to bottom, var(--line) 0 1px, transparent 1px 15px);
+}
+.letter { position: relative; background: radial-gradient(ellipse at 90% 0%, rgba(220, 181, 117, 0.055), transparent 65%); }
+.letter::before, .letter::after { content: ''; position: absolute; width: 12px; height: 12px; pointer-events: none; border-color: var(--gold); border-style: solid; }
+.letter::before { top: -4px; left: -4px; border-width: 1px 0 0 1px; }
+.letter::after { bottom: -4px; right: -4px; border-width: 0 1px 1px 0; }
+
+/* ------------------------------------------------------- section artwork */
+.section-art { width: 100%; height: auto; display: block; overflow: visible; filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.55)); }
+.art-caption { font: 500 10px var(--engraved); letter-spacing: 0.3em; text-transform: uppercase; fill: var(--gold); }
+
+/* Painted astronaut (when supplied): same placement as the placeholder. */
+.astronaut-art {
+  --s: min(76vh, 68vw); object-fit: contain; left: -4vw; bottom: -8vh;
+  /* Keep the shoulder in shadow while the glove catches the galaxy's light. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, rgba(0, 0, 0, 0.65));
+  mask-image: linear-gradient(to bottom, #000 78%, rgba(0, 0, 0, 0.65));
+}
+@media (max-aspect-ratio: 9/10) {
+  .astronaut-art { --s: 118vw; left: -12vw; bottom: -10vh; transform: rotate(-20deg); }
+  .astronaut-art.is-departing { transform: translate(-30vw, 20vh) rotate(-30deg) scale(1.3); }
+  .universe-note { left: 42vw; padding: 0.5rem 0.65rem; border-left: 1px solid var(--line); background: linear-gradient(90deg, rgba(5, 6, 14, 0.8), rgba(5, 6, 14, 0.4)); }
+}
+
+@media (max-width: 900px) {
+  .toolkit-body { grid-template-columns: 1fr; gap: 1.5rem; }
+  .toolkit-art { width: min(100%, 360px); margin: 0 auto; }
+  .toolkit-controls { display: contents; }
+  .toolkit-tabs { order: -1; justify-content: center; margin-bottom: 0; }
+  .toolkit-panel { min-height: 130px; }
+}
+@media (max-width: 640px) {
+  .course { bottom: 1.4rem; }
+  .star-emblem { margin: 0; grid-row: span 2; }
+  .section-head-aside { display: block; width: 120px; justify-self: end; margin-top: -1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .galaxy-epigraph { animation: none; }
+  .mark.is-selected .medallion::before { animation: none; opacity: 0.6; }
+  .toolkit-scene.is-entering { animation-name: fade-in; }
+  .toolkit-scene.is-leaving { animation-name: fade-out; }
+  .tk-draw { animation: none; stroke-dasharray: none; }
+  .tk-region, .toolkit-panel { animation-name: fade-in; }
+  .course, .course-travel .course-rule { animation: none; }
+}
