@@ -1,7 +1,7 @@
 import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
-import App, { introStorageKey } from './App';
+import App from './App';
 
 const go = (hash: string) => act(() => { window.location.hash = hash; });
 const nav = () => screen.getByRole('navigation', { name: 'Portfolio' });
@@ -18,44 +18,17 @@ describe('the universe', () => {
     expect(screen.queryByRole('button', { name: /Skip intro/ })).not.toBeInTheDocument();
   });
 
-  it('plays the introduction once when the galaxy is selected, and Skip intro lands on the overview', async () => {
-    const user = userEvent.setup();
-    render(<App/>);
-    await user.click(screen.getByRole('button', { name: /Enter the galaxy/ }));
-    const skip = await screen.findByRole('button', { name: /Skip intro/ });
-    expect(skip).toHaveFocus();
-    expect(screen.getByText('I’m Mateus, a computer science student at UMass Amherst.')).toBeInTheDocument();
-    expect(screen.getByText('I build data pipelines, web apps, and tools for exploring complex information.')).toBeInTheDocument();
-    expect(within(document.querySelector('.intro') as HTMLElement).getByText('Software Engineer')).toBeInTheDocument();
-    await user.click(skip);
-    await waitFor(() => expect(screen.getByRole('heading', { level: 1, name: 'Mateus Queiroz' })).toHaveFocus());
-    expect(sessionStorage.getItem(introStorageKey)).toBe('1');
-    const marks = within(screen.getByRole('navigation', { name: 'Destinations in the galaxy' })).getAllByRole('link');
-    expect(marks.map(l => l.getAttribute('href'))).toEqual(['#/about', '#/projects', '#/experience', '#/contact']);
-    expect(marks[1]).toHaveAccessibleName(/Projects.*SearchLens, UMarket, and UTrace/);
-  });
-
-  it('finishes the introduction on its own', async () => {
-    vi.useFakeTimers({ shouldAdvanceTime: true });
-    try {
-      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
-      render(<App/>);
-      await user.click(screen.getByRole('button', { name: /Enter the galaxy/ }));
-      expect(await screen.findByRole('button', { name: /Skip intro/ })).toBeInTheDocument();
-      act(() => { vi.advanceTimersByTime(14000); });
-      expect(screen.queryByRole('button', { name: /Skip intro/ })).not.toBeInTheDocument();
-      expect(screen.getByRole('heading', { level: 1, name: 'Mateus Queiroz' })).toHaveFocus();
-    } finally { vi.useRealTimers(); }
-  });
-
-  it('does not replay the introduction later in the session, or on routine navigation', async () => {
-    sessionStorage.setItem(introStorageKey, '1');
+  it('opens the overview immediately when WebGL is unavailable', async () => {
     const user = userEvent.setup();
     render(<App/>);
     await user.click(screen.getByRole('button', { name: /Enter the galaxy/ }));
     await waitFor(() => expect(screen.getByRole('heading', { level: 1, name: 'Mateus Queiroz' })).toHaveFocus());
     expect(screen.queryByRole('button', { name: /Skip intro/ })).not.toBeInTheDocument();
+    const marks = within(screen.getByRole('navigation', { name: 'Destinations in the galaxy' })).getAllByRole('link');
+    expect(marks.map(l => l.getAttribute('href'))).toEqual(['#/about', '#/projects', '#/experience', '#/contact']);
+    expect(marks[1]).toHaveAccessibleName(/Projects.*SearchLens, UMarket, and UTrace/);
   });
+
 });
 
 describe('sections', () => {

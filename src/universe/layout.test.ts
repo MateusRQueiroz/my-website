@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { DESTINATION_ORDER, INTRO, arcPose, destinationPoints, galaxyFootprint, journeyEase, project, shotFor } from './layout';
+import { DESTINATION_ORDER, arcPose, destinationPoints, galaxyFootprint, journeyEase, project, shotFor } from './layout';
 
 const aspects = [1440 / 900, 1280 / 720, 390 / 844, 768 / 1024];
 
@@ -44,12 +44,4 @@ describe('motion', () => {
     end.pos.forEach((v, i) => expect(v).toBeCloseTo(b.pos[i], 6));
   });
 
-  it('gives each title enough time to read and never overlaps them', () => {
-    const [one, two] = INTRO.beats;
-    expect(one.out - one.in).toBeGreaterThanOrEqual(3000);
-    expect(two.out - two.in).toBeGreaterThanOrEqual(3300);
-    expect(two.in).toBeGreaterThan(one.out);
-    expect(INTRO.title.in).toBeGreaterThan(two.out);
-    expect(INTRO.done).toBeGreaterThanOrEqual(INTRO.title.out);
-  });
 });

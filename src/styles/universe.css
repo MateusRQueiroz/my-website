@@ -59,31 +59,6 @@
 .universe-note strong { font: 600 1.05rem var(--display); color: var(--ivory); }
 @media (max-aspect-ratio: 9/10) { .universe-note { left: 38vw; right: 1rem; bottom: 1.25rem; font-size: 0.8rem; } }
 
-/* ------------------------------------------------------------------ intro */
-.intro { position: fixed; inset: 0; z-index: 25; pointer-events: none; }
-.intro-stage { position: absolute; left: 50%; top: 50%; width: min(88vw, 820px); transform: translate(-50%, -50%); display: grid; place-items: center; text-align: center; }
-.intro-stage > * { grid-area: 1 / 1; }
-.intro::before { content: ''; position: absolute; left: 50%; top: 50%; width: min(110vw, 1100px); height: 46vh; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgba(16, 8, 18, 0.46), rgba(16, 8, 18, 0.22) 62%, transparent); }
-.intro-beat {
-  font: italic 500 clamp(1.5rem, 3.2vw, 2.4rem)/1.35 var(--display); color: var(--ivory);
-  text-shadow: 0 0 28px rgba(5, 6, 14, 0.95), 0 0 6px rgba(5, 6, 14, 0.8);
-  opacity: 0;
-  animation: beat-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--in) both, beat-out 700ms ease calc(var(--in) + var(--hold) - 700ms) forwards;
-}
-.intro-title { opacity: 0; animation: beat-in 1200ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--in) both, beat-out 700ms ease calc(var(--in) + var(--hold) - 700ms) forwards; }
-.intro-name { font: 600 clamp(3rem, 8.5vw, 6.6rem)/1 var(--display); letter-spacing: 0.01em; text-shadow: 0 0 40px rgba(5, 6, 14, 0.9); }
-.intro-role {
-  margin-top: 1rem; font: 500 clamp(0.8rem, 1.6vw, 1.05rem) var(--engraved); letter-spacing: 0.5em; padding-left: 0.5em; text-transform: uppercase; color: var(--gold-bright);
-  opacity: 0; animation: beat-in 900ms ease calc(var(--in) + 500ms) both;
-}
-@keyframes beat-in { from { opacity: 0; filter: blur(8px); transform: translateY(10px); letter-spacing: 0.04em; } to { opacity: 1; filter: blur(0); transform: none; } }
-@keyframes beat-out { to { opacity: 0; filter: blur(4px); transform: translateY(-6px); } }
-.skip-intro {
-  position: fixed; right: var(--gutter); bottom: 1.75rem; pointer-events: auto; min-height: 44px; padding: 0 1.2rem; cursor: pointer;
-  font: 500 0.86rem var(--body); color: var(--ivory); background: rgba(5, 6, 14, 0.72); border: 1px solid var(--line); border-radius: 999px;
-}
-.skip-intro:hover { border-color: var(--gold-bright); color: var(--gold-bright); }
-
 /* ----------------------------------------------------------------- galaxy */
 .view-galaxy { position: relative; min-height: 100svh; }
 .marks ul { position: absolute; inset: 0; }
@@ -125,7 +100,6 @@
   .astronaut { animation: none; transition: opacity 0.4s ease; }
   .astronaut.is-departing { transform: none; }
   .cue-label { animation: none; opacity: 0.9; }
-  .intro-beat, .intro-title, .intro-role { animation-name: fade-in, fade-out; }
   .view-galaxy.is-revealed .mark { animation-name: fade-in; }
   .universe-canvas, .stage-veil { transition-duration: 0.3s; }
 }

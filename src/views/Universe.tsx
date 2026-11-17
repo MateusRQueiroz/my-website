@@ -20,7 +20,7 @@ export function Universe({ headingRef, onEnter }: { headingRef: Ref<HTMLHeadingE
     <button type="button" className="galaxy-target" onClick={onEnter}
       style={{ left: box.left - pad, top: box.top - pad, width: w, height: h }}
       onPointerEnter={() => hover(true)} onPointerLeave={() => hover(false)} onFocus={() => hover(true)} onBlur={() => hover(false)}>
-      <span className="sr-only">Enter the galaxy and begin the introduction</span>
+      <span className="sr-only">Enter the galaxy</span>
       <span className="target-ring" aria-hidden="true"/>
     </button>
     <p className="galaxy-epigraph" style={{ left: box.cx, top: box.top - 56 }}>Beyond the known, there is more to discover.</p>

@@ -73,7 +73,7 @@ function galaxyShot(aspect: number): Shot {
 
 /** Where each destination sits on screen in the overview, in NDC. Leaves the core and the lower-left panel clear. */
 const DEST_NDC: Record<'wide' | 'tall', Record<DestinationId, [number, number]>> = {
-  wide: { about: [-0.5, 0.3], projects: [-0.2, -0.34], experience: [0.42, 0.4], contact: [0.55, -0.22] },
+  wide: { about: [-0.5, 0.3], projects: [-0.2, -0.56], experience: [0.42, 0.4], contact: [0.55, -0.22] },
   tall: { about: [-0.42, 0.5], projects: [0.42, 0.3], experience: [-0.42, 0.02], contact: [0.42, -0.18] },
 };
 export const DESTINATION_ORDER: DestinationId[] = ['about', 'projects', 'experience', 'contact'];
@@ -139,16 +139,6 @@ export const journeyEase = bezier(0.5, 0, 0.1, 1);
 /** Destination glides: an unhurried departure and a long, gentle settle. */
 export const glideEase = bezier(0.42, 0, 0.08, 1);
 
-/** Timeline of the first entrance, in milliseconds from the moment the galaxy is selected. */
-export const INTRO = {
-  travel: 12000,
-  beats: [
-    { in: 1300, out: 4700 },
-    { in: 5500, out: 9100 },
-  ],
-  title: { in: 9700, out: 12900 },
-  done: 13500,
-};
 export const SHORT_TRAVEL = 3400;
 
 /** Destination sequences: how long the selection holds before the camera moves, and travel times. */

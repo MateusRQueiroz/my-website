@@ -4,7 +4,6 @@ const ready = (page: Page) => page.waitForFunction(() => { const s = document.qu
 const nav = (page: Page) => page.getByRole('navigation', { name: 'Portfolio' });
 const marks = (page: Page) => page.getByRole('navigation', { name: 'Destinations in the galaxy' }).getByRole('link');
 const noOverflow = (page: Page) => page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth);
-const opacity = (page: Page, text: string) => page.getByText(text, { exact: true }).evaluate(el => Number(getComputedStyle(el).opacity));
 
 /** Counts WebGL draw calls, to check that the scene stops rendering when nothing moves. */
 async function countDraws(page: Page) {
@@ -32,33 +31,12 @@ test('portfolio links and the resume work before the 3D chunk arrives', async ({
   await ready(page);
 });
 
-test('the opening waits; selecting the galaxy plays timed titles; Skip intro lands on the overview', async ({ page }) => {
-  const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
-  await page.setViewportSize({ width: 1440, height: 900 });
+test('the same short flight runs on first and repeat entry, and history still works', async ({ page }) => {
   await page.goto('/'); await ready(page);
-  await page.waitForTimeout(3000);
-  await expect(page.getByRole('button', { name: /Skip intro/ })).toHaveCount(0); // nothing starts on its own
   await page.getByRole('button', { name: /Enter the galaxy/ }).click();
-  const skip = page.getByRole('button', { name: /Skip intro/ });
-  await expect(skip).toBeVisible(); await expect(skip).toBeFocused();
-  await page.waitForTimeout(2800);
-  expect(await opacity(page, 'I’m Mateus, a computer science student at UMass Amherst.')).toBeGreaterThan(0.9);
-  expect(await opacity(page, 'I build data pipelines, web apps, and tools for exploring complex information.')).toBeLessThan(0.05);
-  await skip.click();
   await expect(page.getByRole('heading', { level: 1, name: 'Mateus Queiroz' })).toBeFocused();
-  await expect(page).toHaveURL(/#\/galaxy$/);
-  await expect(marks(page)).toHaveCount(4);
-  for (const m of await marks(page).all()) { await expect(m).toBeVisible(); await expect(m).toBeInViewport(); }
-  expect(errors).toEqual([]);
-});
-
-test('the full journey settles on its own; history and re-entry never replay the introduction', async ({ page }) => {
-  await page.goto('/'); await ready(page);
-  await page.getByRole('button', { name: /Enter the galaxy/ }).click();
-  // Observe the title reaching full opacity rather than sampling the easing curve
-  // at one wall-clock instant (software WebGL can delay individual frames).
-  await expect.poll(() => page.locator('.intro-title').evaluate(el => Number(getComputedStyle(el).opacity)), { timeout: 14000, intervals: [150] }).toBeGreaterThan(0.9);
-  await expect(page.getByRole('heading', { level: 1, name: 'Mateus Queiroz' })).toBeFocused({ timeout: 8000 });
+  await expect(page.locator('.intro-stage, .intro-beat, .intro-title')).toHaveCount(0);
+  await expect(marks(page).first()).toBeVisible({ timeout: 8000 });
   await expect(page.getByRole('button', { name: /Skip intro/ })).toHaveCount(0);
   await marks(page).filter({ hasText: 'Experience' }).click();
   await expect(page.getByRole('heading', { level: 1, name: 'Experience' })).toBeFocused();
@@ -108,13 +86,12 @@ test('the scene stops drawing on section pages and keeps idle motion light', asy
   expect(b - a).toBe(0);
 });
 
-test('reduced motion: titles fade without camera travel, and everything stays reachable', async ({ page }) => {
+test('reduced motion: the overview opens without camera travel, and everything stays reachable', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/'); await ready(page);
   await expect(page.locator('.astronaut')).toHaveCSS('animation-name', 'none');
   await page.getByRole('button', { name: /Enter the galaxy/ }).click();
-  await expect(page.getByRole('button', { name: /Skip intro/ })).toBeFocused();
-  await page.getByRole('button', { name: /Skip intro/ }).click();
+  await expect(page.getByRole('button', { name: /Skip intro/ })).toHaveCount(0);
   await expect(page.getByRole('heading', { level: 1, name: 'Mateus Queiroz' })).toBeFocused();
   for (const m of await marks(page).all()) await expect(m).toBeVisible();
 });
@@ -164,5 +141,5 @@ test('keyboard: skip link, then the galaxy itself is reachable and starts the en
   await page.keyboard.press('Tab');
   await expect(page.getByRole('button', { name: /Enter the galaxy/ })).toBeFocused();
   await page.keyboard.press('Enter');
-  await expect(page.getByRole('button', { name: /Skip intro/ })).toBeFocused();
+  await expect(page.getByRole('heading', { level: 1, name: 'Mateus Queiroz' })).toBeFocused();
 });

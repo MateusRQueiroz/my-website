@@ -31,11 +31,7 @@ npm run test:e2e # browser journeys in headless Microsoft Edge (build first)
   Nothing starts automatically. The galaxy is a large button; hover/focus
   brightens the engraved rings. Artwork provenance and the original generation
   prompt are in `docs/ASTRONAUT_ASSET.md`.
-- **Entry** — selecting the galaxy plays a 12 s camera journey (spherical arc,
-  slow start, long soft landing) with timed titles: the two intro sentences, then
-  "Mateus Queiroz / Software Engineer". "Skip intro" is focused and lands on the
-  same overview. It plays once per session; later entries are a short flight, and
-  section navigation never replays it.
+- **Entry** — selecting the galaxy plays the same 3.4 s camera flight on every visit.
 - **Galaxy (`#/galaxy`)** — four labeled marble medallions (About, Projects,
   Experience, Contact) at fixed screen positions, each with a one-line purpose.
 - **Sections** — `#/about`, `#/projects` (plus `/searchlens`, `/umarket`,
@@ -46,7 +42,7 @@ npm run test:e2e # browser journeys in headless Microsoft Edge (build first)
   on arrival. A new destination cancels the previous sequence.
 - **Toolkit** — a language atlas, celestial forge, Hermes relay, and scales of
   proof, all using the actual technologies. Arrow keys, Home, and End select tabs.
-- **Reduced motion** — no camera travel or idle motion; the titles cross-fade.
+- **Reduced motion** — no camera travel or idle motion.
 - **No WebGL** — a Canvas 2D still built from the same painted textures and shots.
 
 ## Rendering and performance
